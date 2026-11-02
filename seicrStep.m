@@ -1,9 +1,9 @@
 function Xn = seicrStep(method, t, X, dt, dW, p)
 %SEICRSTEP One step of the chosen integrator for all M paths at once.
 %   X, dW : 5-by-M. method: 'em' | 'milstein' | 'srk' | 'nsfd' | 'nsfd-naive'
-%   'nsfd' is the positivity-preserving splitting scheme of Section 15.4:
+%   'nsfd' is the positivity-preserving splitting scheme of Subsection 15.4:
 %   an NSFD drift step followed by the exact Ito factor exp(sigma dW - sigma^2 dt/2).
-%   'nsfd-naive' is the indicator-split NSFD scheme of Section 15.4, kept only
+%   'nsfd-naive' is the indicator-split NSFD scheme of Subsection 15.4, kept only
 %   for comparison: it is consistent with the Stratonovich, not the Ito, equation.
 sig = p.sigma(:);                    % 5-by-1, broadcasts over columns
 switch lower(method)
@@ -11,7 +11,7 @@ switch lower(method)
         Xn = X + seicrDrift(t,X,p)*dt + sig.*X.*dW;
     case 'milstein'
         Xn = X + seicrDrift(t,X,p)*dt + sig.*X.*dW + 0.5*(sig.^2).*X.*(dW.^2 - dt);
-    case 'srk'   % derivative-free order-1.0 scheme (Kloeden-Platen), Section 15.3
+    case 'srk'   % derivative-free order-1.0 scheme (Kloeden-Platen), Subsection 15.3
         f  = seicrDrift(t,X,p);
         Xh = X + f*dt + sig.*X*sqrt(dt);                   % supporting value
         Xn = X + f*dt + sig.*X.*dW + (sig.*Xh - sig.*X).*(dW.^2 - dt)/(2*sqrt(dt));
