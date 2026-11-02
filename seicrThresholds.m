@@ -1,7 +1,7 @@
 function th = seicrThresholds(p)
 %SEICRTHRESHOLDS Deterministic and noise-corrected threshold quantities.
-%   th.R0       deterministic R0 (period-mean transmission beta0), Section 5.8
-%   th.Rs_mean  heuristic noise-corrected index (period mean), Section 5.9
+%   th.R0       deterministic R0 (period-mean transmission beta0), Subsection 5.8
+%   th.Rs_mean  heuristic noise-corrected index (period mean), Subsection 5.9
 %   th.Rs_peak  the same index with beta0 replaced by beta0(1+eps)
 %   th.bound    rigorous extinction bound lambda* of Theorem 11.2:
 %               s(Fhat - V) - 1/(2*sum_i 1/sigma_i^2), i = 2,3,4; < 0 => extinction
